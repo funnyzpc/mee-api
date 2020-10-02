@@ -13,14 +13,9 @@
         </layout>
     </appender>
 
-    <!-- 控制台输出 END -->
-    <!-- 文件输出 -->
-    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 指定日志文件的名称 -->
         <file>${LOG_HOME}/${appName}.log</file>
-        <!-- 如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
-        　　　　	<append>true</append>
+        <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <MaxHistory>30</MaxHistory>
@@ -33,9 +28,7 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread - %-5level] %logger{50}:%line -%msg%n</pattern>
         </layout>
     </appender>
-    <!-- 文件输出-END -->
 
-    <!-- 异常日志输出文件 -->
     <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -59,21 +52,20 @@
     <logger name="java.sql.Connection" level="DEBUG"/>
     <logger name="java.sql.Statement" level="DEBUG"/>
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
-    <!-- 自己项目的 -->
     <logger name="com.mee" level="DEBUG"/>
-    <!-- dev -->
+
+    <!-- environment -->
     <springProfile name="dev">
         <root level="all">
-            <!-- 控制台 -->
+            <!-- console -->
             <appender-ref ref="console" />
+            <!-- file -->
             <appender-ref ref="appLogAppender"/>
             <appender-ref ref="errorAppender"/>
         </root>
     </springProfile>
-    <!-- test -->
     <springProfile name="test">
         <root level="debug">
-            <!-- 控制台 -->
             <appender-ref ref="console" />
             <appender-ref ref="appLogAppender"/>
             <appender-ref ref="errorAppender"/>

@@ -1,8 +1,8 @@
 
 ### mee-api
 ```
-  MEE api项目,本项目包含常用springboot组件,是一套适合生产使用的开发项目
-  本工程技术组件包含:
+  MEE api 作为一个纯后端api项目,该包含常用springboot组件,是一套适合生产使用的开发项目
+  技术组件大致包含:
     - springboot2.3
     - postgresql
     - mybatis3.5

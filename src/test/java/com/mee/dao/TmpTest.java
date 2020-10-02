@@ -1,4 +1,4 @@
-package com.mee.service;
+package com.mee.dao;
 
 
 import com.mee.common.util.SeqGenUtil;
@@ -17,17 +17,13 @@ import java.util.Map;
  */
 @SpringBootTest
 @ActiveProfiles("dev")
-public class TmpTranslationTest {
+public class TmpTest {
 
     @Resource
     private DBSQLDao DBSQLDao;
 
     @Test
     public void test01()throws Exception{
-        this.insert();
-    }
-
-    public void  insert()throws Exception{
         Map<String,Object> insetParam1 = new HashMap<String,Object>(2,1){{
             put("id", SeqGenUtil.genSeq());
             put("name","hello~");
@@ -35,4 +31,5 @@ public class TmpTranslationTest {
         int  insert1Count = DBSQLDao.create("com.mee.xml.tmp.insert",insetParam1);
         System.out.println("======>insert1Count:"+insert1Count);
     }
+
 }
